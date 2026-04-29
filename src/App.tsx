@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AboutSection } from "./components/AboutSection";
 import { BottomNav } from "./components/BottomNav";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { HeroSection } from "./components/HeroSection";
+import { Preloader } from "./components/Preloader";
 import { RecoverySection } from "./components/RecoverySection";
 import { ShareStorySection } from "./components/ShareStorySection";
 import { StoriesSection } from "./components/StoriesSection";
@@ -20,6 +21,7 @@ import {
 import type { ReactionCounts, ReactionKey, SectionKey, Story } from "./types";
 
 const SECTIONS: SectionKey[] = ["home", "share", "read", "recovery", "about"];
+const SECTION_TRANSITION_MS = 150;
 
 function sectionFromHash(hash: string): SectionKey {
   const section = hash.replace(/^#\/?/, "");
@@ -37,6 +39,9 @@ function AppShell() {
   const [section, setSection] = useState<SectionKey>(() =>
     sectionFromHash(window.location.hash),
   );
+  const [isSwitchingSection, setIsSwitchingSection] = useState(false);
+  const [showPreloader, setShowPreloader] = useState(true);
+  const transitionTimeoutRef = useRef<number | null>(null);
   const [userStories, setUserStories] = useState<Story[]>(() =>
     loadUserStories(),
   );
@@ -56,6 +61,11 @@ function AppShell() {
 
   useEffect(() => {
     const syncSectionFromUrl = () => {
+      if (transitionTimeoutRef.current !== null) {
+        window.clearTimeout(transitionTimeoutRef.current);
+        transitionTimeoutRef.current = null;
+      }
+      setIsSwitchingSection(false);
       setSection(sectionFromHash(window.location.hash));
     };
 
@@ -64,6 +74,9 @@ function AppShell() {
     return () => {
       window.removeEventListener("hashchange", syncSectionFromUrl);
       window.removeEventListener("popstate", syncSectionFromUrl);
+      if (transitionTimeoutRef.current !== null) {
+        window.clearTimeout(transitionTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -87,11 +100,30 @@ function AppShell() {
   );
 
   /* handlers --------------------------------------------------------- */
-  const handleNavigate = useCallback((next: SectionKey) => {
-    setSection(next);
-    window.history.pushState(null, "", urlForSection(next));
-    queueMicrotask(() => window.scrollTo({ top: 0, behavior: "smooth" }));
-  }, []);
+  const handleNavigate = useCallback(
+    (next: SectionKey) => {
+      if (next === section) {
+        window.history.pushState(null, "", urlForSection(next));
+        queueMicrotask(() => window.scrollTo({ top: 0, behavior: "smooth" }));
+        return;
+      }
+
+      if (transitionTimeoutRef.current !== null) {
+        window.clearTimeout(transitionTimeoutRef.current);
+      }
+
+      setIsSwitchingSection(true);
+      window.history.pushState(null, "", urlForSection(next));
+
+      transitionTimeoutRef.current = window.setTimeout(() => {
+        setSection(next);
+        setIsSwitchingSection(false);
+        transitionTimeoutRef.current = null;
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, SECTION_TRANSITION_MS);
+    },
+    [section],
+  );
 
   const handleCreateStory = useCallback(
     (
@@ -134,45 +166,58 @@ function AppShell() {
     toast("Thank you. In a real version, this story would be reviewed.");
   }, [toast]);
 
+  const handlePreloaderDone = useCallback(() => {
+    setShowPreloader(false);
+  }, []);
+
   /* render ----------------------------------------------------------- */
   return (
     <div className="relative flex min-h-screen flex-col">
+      {showPreloader && <Preloader onDone={handlePreloaderDone} />}
       <Header active={section} onSelect={handleNavigate} />
 
       <main className="flex-1 pb-24 lg:pb-0">
-        {section === "home" && (
-          <HeroSection
-            onNavigate={handleNavigate}
-            storyCount={stories.length}
-          />
-        )}
-        {section === "share" && (
-          <ShareStorySection
-            pool={stories}
-            numberFor={numberFor}
-            onCreateStory={handleCreateStory}
-            onReact={handleReact}
-            onReport={handleReport}
-            onNavigate={handleNavigate}
-          />
-        )}
-        {section === "read" && (
-          <StoriesSection
-            stories={stories}
-            numberFor={numberFor}
-            onReact={handleReact}
-            onReport={handleReport}
-          />
-        )}
-        {section === "recovery" && (
-          <RecoverySection
-            stories={stories}
-            numberFor={numberFor}
-            onReact={handleReact}
-            onReport={handleReport}
-          />
-        )}
-        {section === "about" && <AboutSection onNavigate={handleNavigate} />}
+        <div
+          key={section}
+          className={[
+            "page-transition",
+            isSwitchingSection ? "page-transition--out" : "",
+          ].join(" ")}
+        >
+          {section === "home" && (
+            <HeroSection
+              onNavigate={handleNavigate}
+              storyCount={stories.length}
+            />
+          )}
+          {section === "share" && (
+            <ShareStorySection
+              pool={stories}
+              numberFor={numberFor}
+              onCreateStory={handleCreateStory}
+              onReact={handleReact}
+              onReport={handleReport}
+              onNavigate={handleNavigate}
+            />
+          )}
+          {section === "read" && (
+            <StoriesSection
+              stories={stories}
+              numberFor={numberFor}
+              onReact={handleReact}
+              onReport={handleReport}
+            />
+          )}
+          {section === "recovery" && (
+            <RecoverySection
+              stories={stories}
+              numberFor={numberFor}
+              onReact={handleReact}
+              onReport={handleReport}
+            />
+          )}
+          {section === "about" && <AboutSection onNavigate={handleNavigate} />}
+        </div>
       </main>
 
       <Footer onNavigate={handleNavigate} />

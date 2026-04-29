@@ -33,17 +33,17 @@ export function ShareStorySection({
   }
 
   return (
-    <section className="px-4 pt-8 sm:px-6 sm:pt-12">
-      <div className="mx-auto max-w-3xl">
-        <header className="anim-rise mb-8">
+    <section className="overflow-x-hidden px-4 pt-8 sm:px-6 sm:pt-12">
+      <div className="mx-auto min-w-0 max-w-3xl">
+        <header className="anim-rise mb-8 min-w-0">
           <p className="stamp">Step one</p>
           <h2
-            className="mt-2 font-display text-4xl leading-tight text-ink sm:text-5xl"
+            className="mt-2 text-wrap font-display text-3xl leading-tight text-ink sm:text-5xl"
             style={{ fontVariationSettings: '"SOFT" 100, "opsz" 96' }}
           >
             {submitted ? "Thank you." : "Share a story, anonymously."}
           </h2>
-          <p className="mt-3 max-w-xl font-display text-lg italic text-ink-soft">
+          <p className="mt-3 max-w-full text-wrap font-display text-lg italic text-ink-soft sm:max-w-xl">
             {submitted
               ? "Your story may help another student feel less alone."
               : "Someone else has felt this too. Your honesty might be the thing they needed."}

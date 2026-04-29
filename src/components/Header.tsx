@@ -102,7 +102,7 @@ export function Header({ active, onSelect }: Props) {
           <button
             type="button"
             onClick={() => onSelect("share")}
-            className="rounded-full bg-matcha px-4 py-2 font-body text-sm font-semibold text-paper shadow-paper transition-all hover:-translate-y-0.5 hover:bg-matcha-deep hover:shadow-paper-hover"
+            className="hidden rounded-full bg-matcha px-4 py-2 font-body text-sm font-semibold text-paper shadow-paper transition-all hover:-translate-y-0.5 hover:bg-matcha-deep hover:shadow-paper-hover sm:inline-flex"
           >
             Share a story
           </button>

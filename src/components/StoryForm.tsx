@@ -58,14 +58,14 @@ export function StoryForm({ onSubmit }: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="paper-card relative space-y-6 p-6 sm:p-8"
+      className="paper-card relative min-w-0 overflow-hidden space-y-6 p-5 sm:p-8"
       noValidate
     >
       {/* privacy note */}
       <div
         id="privacy-note"
         role="note"
-        className="flex items-start gap-3 rounded-2xl border border-border-soft bg-cream/60 px-4 py-3"
+        className="flex min-w-0 items-start gap-3 rounded-2xl border border-border-soft bg-cream/60 px-4 py-3"
       >
         <span
           aria-hidden="true"
@@ -88,7 +88,7 @@ export function StoryForm({ onSubmit }: Props) {
             />
           </svg>
         </span>
-        <div className="flex-1 space-y-0.5">
+        <div className="min-w-0 flex-1 space-y-0.5">
           <p className="stamp">Privacy note</p>
           <p className="font-body text-sm leading-relaxed text-ink-soft">
             Please do not include real names, phone numbers, student IDs, or
@@ -276,12 +276,12 @@ function Field({
 }) {
   return (
     <div>
-      <div className="mb-1.5 flex items-baseline justify-between gap-3">
-        <label htmlFor={id} className="font-display text-lg text-ink">
+      <div className="mb-1.5 flex flex-wrap items-baseline justify-between gap-3">
+        <label htmlFor={id} className="min-w-0 font-display text-lg text-ink">
           {label}
         </label>
         {field !== "recovery" && (
-          <span className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-blush">
+          <span className="shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-blush">
             required
           </span>
         )}
