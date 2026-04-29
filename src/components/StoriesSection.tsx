@@ -69,7 +69,7 @@ export function StoriesSection({
         </header>
 
         <div className="anim-rise grid gap-6 lg:grid-cols-[1fr_360px]">
-          <div className="order-2 lg:order-1">
+          <div className="order-2 min-w-0 lg:order-1">
             <CategoryFilter
               selected={filter}
               onSelect={setFilter}
@@ -101,21 +101,19 @@ export function StoriesSection({
           </div>
 
           {/* right column — sticky random panel on desktop */}
-          <aside className="order-1 lg:order-2 lg:sticky lg:top-24 lg:self-start">
+          <aside className="order-1 min-w-0 lg:order-2 lg:sticky lg:top-24 lg:self-start">
             <RandomStoryPanel
               pool={filter === "all" ? stories : filtered}
               numberFor={numberFor}
               onReact={onReact}
               onReport={onReport}
-              buttonLabel="Receive a Random Story"
+              buttonLabel="Receive a Story"
               emptyLabel="Nothing to receive in this category yet."
             />
-            <p className="mt-3 px-2 text-center font-body text-xs text-mute lg:text-left">
-              The random window pulls from the{" "}
+            <p className="mt-3 px-2 text-center font-body text-xs text-ink-soft lg:text-left">
               {filter === "all"
-                ? "full collection"
-                : `“${CATEGORIES.find((c) => c.key === filter)?.short}” shelf`}
-              .
+                ? "Each tap gives you one anonymous story from the box."
+                : `Each tap gives you one anonymous story from the “${CATEGORIES.find((c) => c.key === filter)?.short}” shelf.`}
             </p>
           </aside>
         </div>

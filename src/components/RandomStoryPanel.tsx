@@ -19,7 +19,7 @@ export function RandomStoryPanel({
   numberFor,
   onReact,
   onReport,
-  buttonLabel = "Receive a Random Story",
+  buttonLabel = "Receive a Story",
   emptyLabel = "No stories yet — be the first.",
   autoOpen = false,
   excludeId,
@@ -64,20 +64,23 @@ export function RandomStoryPanel({
   const isEmpty = pool.length === 0;
 
   return (
-    <div className="paper-card relative overflow-hidden p-6 sm:p-7">
+    <div className="paper-card relative overflow-hidden p-5 sm:p-7">
       {/* machine top label */}
-      <div className="mb-5 flex items-center justify-between gap-3">
+      <div className="mb-2 flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
         <div className="flex items-center gap-2.5">
           <span
             className="inline-flex h-2.5 w-2.5 animate-pulse rounded-full bg-blush"
             aria-hidden="true"
           />
           <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-ink">
-            Vending window
+            Story Window
           </span>
         </div>
-        <span className="stamp">Press to receive</span>
+        <span className="stamp">Tap to receive</span>
       </div>
+      <p className="mb-4 font-display text-sm italic text-ink-soft">
+        괜찮아, 너만 그런 거 아니야.
+      </p>
 
       {/* the machine window */}
       <div
@@ -182,16 +185,17 @@ export function RandomStoryPanel({
       </div>
 
       {/* receive button */}
-      <div className="mt-5 flex flex-col-reverse items-stretch justify-between gap-3 sm:flex-row sm:items-center">
-        <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-mute">
+      <div className="mt-5 flex flex-col-reverse items-stretch justify-between gap-3 md:flex-row md:items-center">
+        <p className="font-body text-sm italic leading-snug text-ink-soft">
           Share a failure. Receive a little courage.
         </p>
         <button
           type="button"
           disabled={isEmpty}
           onClick={handleReceive}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-blush px-5 py-3 font-body text-base font-semibold text-paper shadow-paper transition-all hover:-translate-y-0.5 hover:bg-blush-deep hover:shadow-paper-hover disabled:cursor-not-allowed disabled:bg-mute"
+          className="inline-flex w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-blush px-6 py-3 font-body text-base font-semibold text-paper shadow-paper transition-all hover:-translate-y-0.5 hover:bg-blush-deep hover:shadow-paper-hover disabled:cursor-not-allowed disabled:bg-mute md:w-auto"
         >
+          <span>{story ? "Receive another" : buttonLabel}</span>
           <svg
             width="14"
             height="14"
@@ -200,14 +204,13 @@ export function RandomStoryPanel({
             aria-hidden="true"
           >
             <path
-              d="M7 2.5v8M3.5 7l3.5 3.5L10.5 7"
+              d="M3 7h8M7 3l4 4-4 4"
               stroke="currentColor"
               strokeWidth="1.7"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
-          <span>{story ? "Receive another" : buttonLabel}</span>
         </button>
       </div>
     </div>
