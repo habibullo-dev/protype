@@ -19,8 +19,24 @@ import {
 } from "./lib/storage";
 import type { ReactionCounts, ReactionKey, SectionKey, Story } from "./types";
 
+const SECTIONS: SectionKey[] = ["home", "share", "read", "recovery", "about"];
+
+function sectionFromHash(hash: string): SectionKey {
+  const section = hash.replace(/^#\/?/, "");
+  return SECTIONS.includes(section as SectionKey)
+    ? (section as SectionKey)
+    : "home";
+}
+
+function urlForSection(section: SectionKey): string {
+  const path = window.location.pathname + window.location.search;
+  return section === "home" ? path : `${path}#${section}`;
+}
+
 function AppShell() {
-  const [section, setSection] = useState<SectionKey>("home");
+  const [section, setSection] = useState<SectionKey>(() =>
+    sectionFromHash(window.location.hash),
+  );
   const [userStories, setUserStories] = useState<Story[]>(() =>
     loadUserStories(),
   );
@@ -37,6 +53,19 @@ function AppShell() {
   useEffect(() => {
     saveReactionOverrides(overrides);
   }, [overrides]);
+
+  useEffect(() => {
+    const syncSectionFromUrl = () => {
+      setSection(sectionFromHash(window.location.hash));
+    };
+
+    window.addEventListener("hashchange", syncSectionFromUrl);
+    window.addEventListener("popstate", syncSectionFromUrl);
+    return () => {
+      window.removeEventListener("hashchange", syncSectionFromUrl);
+      window.removeEventListener("popstate", syncSectionFromUrl);
+    };
+  }, []);
 
   /* derived state ---------------------------------------------------- */
   const stories = useMemo(() => {
@@ -60,6 +89,7 @@ function AppShell() {
   /* handlers --------------------------------------------------------- */
   const handleNavigate = useCallback((next: SectionKey) => {
     setSection(next);
+    window.history.pushState(null, "", urlForSection(next));
     queueMicrotask(() => window.scrollTo({ top: 0, behavior: "smooth" }));
   }, []);
 
