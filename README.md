@@ -54,6 +54,18 @@ npm run preview  # preview the built site
 
 Requires Node 20 or newer.
 
+## Deploy to Vercel
+
+This repo includes `vercel.json` so Vercel can deploy it as a static Vite app:
+
+- Framework preset: `Vite`
+- Install command: `npm ci`
+- Build command: `npm run build`
+- Output directory: `dist`
+
+After pushing the repo, import it in Vercel and deploy. The config also rewrites
+all routes to `index.html`, which keeps the React app working on page refreshes.
+
 ## Project structure
 
 ```
