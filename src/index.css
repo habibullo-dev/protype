@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+@theme {
+  /* palette */
+  --color-cream: #fff7ef;
+  --color-cream-deep: #f6ead9;
+  --color-paper: #ffffff;
+  --color-matcha: #7bae7f;
+  --color-matcha-deep: #67996c;
+  --color-matcha-tint: #e9f1e8;
+  --color-blush: #e85d75;
+  --color-blush-deep: #c94862;
+  --color-pink-soft: #fadadd;
+  --color-recovery: #e8f5e9;
+  --color-recovery-deep: #cfe5cf;
+  --color-ink: #2f2f2f;
+  --color-ink-soft: #4a4845;
+  --color-mute: #7a7a7a;
+  --color-border-soft: #eadfd4;
+  --color-border-paper: #efe4d6;
+
+  /* type */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Manrope", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* shadows */
+  --shadow-paper:
+    0 1px 2px rgba(47, 47, 47, 0.04), 0 8px 24px -12px rgba(47, 47, 47, 0.1);
+  --shadow-paper-hover:
+    0 2px 4px rgba(47, 47, 47, 0.06), 0 16px 32px -16px rgba(47, 47, 47, 0.16);
+  --shadow-machine:
+    inset 0 2px 6px rgba(47, 47, 47, 0.08),
+    inset 0 -2px 0 rgba(47, 47, 47, 0.04);
+  --shadow-stamp: 0 0 0 1.5px var(--color-border-soft);
+
+  /* radii */
+  --radius-card: 1.25rem;
+  --radius-pill: 999px;
+
+  /* easings */
+  --ease-paper: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ------------------------------------------------------------------ */
+/* base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  :root {
+    color-scheme: light;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  html,
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  body {
+    margin: 0;
+    /* paper grain — small svg noise tiled subtly */
+    background-image:
+      radial-gradient(
+        1200px 600px at 12% -10%,
+        rgba(232, 93, 117, 0.05) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        900px 500px at 110% 8%,
+        rgba(123, 174, 127, 0.07) 0%,
+        transparent 65%
+      ),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.18  0 0 0 0 0.18  0 0 0 0.045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    background-size:
+      auto,
+      auto,
+      240px 240px;
+    background-attachment: fixed, fixed, fixed;
+  }
+
+  ::selection {
+    background: var(--color-pink-soft);
+    color: var(--color-ink);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    letter-spacing: -0.012em;
+    font-variation-settings:
+      "SOFT" 60,
+      "opsz" 96;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+  }
+
+  /* focus rings */
+  :where(button, a, input, textarea, select):focus-visible {
+    outline: 2px solid var(--color-matcha-deep);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* utilities                                                           */
+/* ------------------------------------------------------------------ */
+@utility paper-card {
+  background: var(--color-paper);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-paper);
+}
+
+@utility tape {
+  position: absolute;
+  width: 56px;
+  height: 18px;
+  background: rgba(232, 93, 117, 0.18);
+  mix-blend-mode: multiply;
+  border-radius: 2px;
+}
+
+@utility stamp {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-mute);
+}
+
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3125rem 0.75rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-soft);
+  background: var(--color-cream);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+/* ------------------------------------------------------------------ */
+/* keyframes                                                           */
+/* ------------------------------------------------------------------ */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-32px) rotate(-2deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(8px) rotate(0.6deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+}
+
+@keyframes ball-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes ping-up {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-22px);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.anim-rise {
+  animation: rise 600ms var(--ease-paper) both;
+}
+
+.anim-drop-in {
+  animation: drop-in 700ms var(--ease-paper) both;
+}
+
+.anim-ball-float {
+  animation: ball-float 5s ease-in-out infinite;
+}
+
+.anim-ping-up {
+  animation: ping-up 700ms ease-out forwards;
+}
+
+.anim-pulse-soft {
+  animation: pulse-soft 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* hide scrollbar on horizontal pill rows */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}

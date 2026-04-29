@@ -1,0 +1,79 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - button "FailMate Stories — go to home" [ref=e6]:
+        - img [ref=e8]
+        - generic [ref=e16]:
+          - generic [ref=e17]: FailMate
+          - generic [ref=e18]: Stories
+      - navigation "Main sections" [ref=e19]:
+        - button "Home" [ref=e20]
+        - button "Share" [ref=e22]: Share
+        - button "Read" [ref=e23]
+        - button "Recovery" [ref=e24]
+        - button "About" [ref=e25]
+      - button "Share a story" [ref=e27]
+  - main [ref=e28]:
+    - generic [ref=e151]:
+      - generic [ref=e152]:
+        - paragraph [ref=e153]: Step one
+        - heading "Share a story, anonymously." [level=2] [ref=e154]
+        - paragraph [ref=e155]: Someone else has felt this too. Your honesty might be the thing they needed.
+      - generic [ref=e156]:
+        - note [ref=e157]:
+          - img [ref=e159]
+          - generic [ref=e162]:
+            - paragraph [ref=e163]: Privacy note
+            - paragraph [ref=e164]: Please do not include real names, phone numbers, student IDs, or private information. This space is anonymous and supportive.
+        - generic [ref=e165]:
+          - generic [ref=e166]:
+            - generic [ref=e167]: What happened?
+            - generic [ref=e168]: required
+          - paragraph [ref=e169]: Tell us briefly. One paragraph is enough.
+          - textbox "What happened?" [ref=e171]:
+            - /placeholder: "Example: I failed an exam even though I studied hard."
+        - generic [ref=e172]:
+          - generic [ref=e173]:
+            - generic [ref=e174]: How did it make you feel?
+            - generic [ref=e175]: required
+          - paragraph [ref=e176]: It is okay if it is messy. Honest is enough.
+          - textbox "How did it make you feel?" [ref=e178]:
+            - /placeholder: "Example: I felt behind compared to my friends."
+        - generic [ref=e179]:
+          - generic [ref=e181]: What helped you recover, or what do you wish someone told you?
+          - paragraph [ref=e182]: Optional. Even one sentence can help someone else.
+          - textbox "What helped you recover, or what do you wish someone told you?" [ref=e184]:
+            - /placeholder: "Example: I wish someone told me one failure does not define me."
+        - generic [ref=e185]:
+          - generic [ref=e186]:
+            - generic [ref=e187]: Category
+            - generic [ref=e188]:
+              - combobox "Category" [ref=e189]:
+                - option "Study stress" [selected]
+                - option "Career / internship"
+                - option "Friendship"
+                - option "Family pressure"
+                - option "Social media comparison"
+                - option "Confidence"
+                - option "Time management"
+                - option "Other"
+              - img
+          - generic [ref=e191] [cursor=pointer]:
+            - checkbox "Show this as a recovery story too It will appear on the Recovery Shelf to help others." [ref=e193]
+            - generic [ref=e194]:
+              - paragraph [ref=e195]: Show this as a recovery story too
+              - paragraph [ref=e196]: It will appear on the Recovery Shelf to help others.
+        - generic [ref=e197]:
+          - paragraph [ref=e198]: You can leave anytime. Nothing leaves your phone except your story.
+          - button "Drop my story into the machine" [ref=e199]:
+            - generic [ref=e200]: Drop my story into the machine
+            - img [ref=e201]
+  - contentinfo [ref=e140]:
+    - generic [ref=e141]:
+      - generic [ref=e142]:
+        - paragraph [ref=e143]: FailMate Stories
+        - paragraph [ref=e144]: Leave one story. Take one story.
+      - generic [ref=e145]:
+        - paragraph [ref=e146]: Project · Design Thinking · 2026
+        - paragraph [ref=e147]: A student prototype for the Failure Vending Machine.
+        - button "About the project →" [ref=e148]

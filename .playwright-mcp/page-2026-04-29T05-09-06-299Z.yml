@@ -1,0 +1,95 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - button "FailMate Stories — go to home" [ref=e6]:
+        - img [ref=e8]
+        - generic [ref=e16]:
+          - generic [ref=e17]: FailMate
+          - generic [ref=e18]: Stories
+      - button "Share a story" [ref=e20]
+  - main [ref=e21]:
+    - generic [ref=e615]:
+      - generic [ref=e616]:
+        - paragraph [ref=e617]: Step one
+        - heading "Share a story, anonymously." [level=2] [ref=e618]
+        - paragraph [ref=e619]: Someone else has felt this too. Your honesty might be the thing they needed.
+      - generic [ref=e620]:
+        - note [ref=e621]:
+          - img [ref=e623]
+          - generic [ref=e626]:
+            - paragraph [ref=e627]: Privacy note
+            - paragraph [ref=e628]: Please do not include real names, phone numbers, student IDs, or private information. This space is anonymous and supportive.
+        - generic [ref=e629]:
+          - generic [ref=e630]:
+            - generic [ref=e631]: What happened?
+            - generic [ref=e632]: required
+          - paragraph [ref=e633]: Tell us briefly. One paragraph is enough.
+          - textbox "What happened?" [ref=e635]:
+            - /placeholder: "Example: I failed an exam even though I studied hard."
+        - generic [ref=e636]:
+          - generic [ref=e637]:
+            - generic [ref=e638]: How did it make you feel?
+            - generic [ref=e639]: required
+          - paragraph [ref=e640]: It is okay if it is messy. Honest is enough.
+          - textbox "How did it make you feel?" [ref=e642]:
+            - /placeholder: "Example: I felt behind compared to my friends."
+        - generic [ref=e643]:
+          - generic [ref=e645]: What helped you recover, or what do you wish someone told you?
+          - paragraph [ref=e646]: Optional. Even one sentence can help someone else.
+          - textbox "What helped you recover, or what do you wish someone told you?" [ref=e648]:
+            - /placeholder: "Example: I wish someone told me one failure does not define me."
+        - generic [ref=e649]:
+          - generic [ref=e650]:
+            - generic [ref=e651]: Category
+            - generic [ref=e652]:
+              - combobox "Category" [ref=e653]:
+                - option "Study stress" [selected]
+                - option "Career / internship"
+                - option "Friendship"
+                - option "Family pressure"
+                - option "Social media comparison"
+                - option "Confidence"
+                - option "Time management"
+                - option "Other"
+              - img
+          - generic [ref=e655] [cursor=pointer]:
+            - checkbox "Show this as a recovery story too It will appear on the Recovery Shelf to help others." [ref=e657]
+            - generic [ref=e658]:
+              - paragraph [ref=e659]: Show this as a recovery story too
+              - paragraph [ref=e660]: It will appear on the Recovery Shelf to help others.
+        - generic [ref=e661]:
+          - paragraph [ref=e662]: You can leave anytime. Nothing leaves your phone except your story.
+          - button "Drop my story into the machine" [ref=e663]:
+            - generic [ref=e664]: Drop my story into the machine
+            - img [ref=e665]
+  - contentinfo [ref=e133]:
+    - generic [ref=e134]:
+      - generic [ref=e135]:
+        - paragraph [ref=e136]: FailMate Stories
+        - paragraph [ref=e137]: Leave one story. Take one story.
+      - generic [ref=e138]:
+        - paragraph [ref=e139]: Project · Design Thinking · 2026
+        - paragraph [ref=e140]: A student prototype for the Failure Vending Machine.
+        - button "About the project →" [ref=e141]
+  - navigation "Sections" [ref=e142]:
+    - list [ref=e143]:
+      - listitem [ref=e144]:
+        - button "Home" [ref=e145]:
+          - img [ref=e147]
+          - generic [ref=e149]: Home
+      - listitem [ref=e150]:
+        - button "Share" [active] [ref=e151]:
+          - img [ref=e153]
+          - generic [ref=e156]: Share
+      - listitem [ref=e157]:
+        - button "Read" [ref=e158]:
+          - img [ref=e160]
+          - generic [ref=e163]: Read
+      - listitem [ref=e164]:
+        - button "Recovery" [ref=e165]:
+          - img [ref=e167]
+          - generic [ref=e170]: Recovery
+      - listitem [ref=e171]:
+        - button "About" [ref=e172]:
+          - img [ref=e174]
+          - generic [ref=e176]: About

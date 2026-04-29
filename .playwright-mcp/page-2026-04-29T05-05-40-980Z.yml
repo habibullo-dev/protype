@@ -1,0 +1,81 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - button "FailMate Stories — go to home" [ref=e6]:
+        - img [ref=e8]
+        - generic [ref=e16]:
+          - generic [ref=e17]: FailMate
+          - generic [ref=e18]: Stories
+      - navigation "Main sections" [ref=e19]:
+        - button "Home" [ref=e20]
+        - button "Share" [ref=e22]: Share
+        - button "Read" [ref=e23]
+        - button "Recovery" [ref=e24]
+        - button "About" [ref=e25]
+      - button "Share a story" [ref=e27]
+  - main [ref=e28]:
+    - generic [ref=e974]:
+      - generic [ref=e975]:
+        - paragraph [ref=e976]: Step one
+        - heading "Share a story, anonymously." [level=2] [ref=e977]
+        - paragraph [ref=e978]: Someone else has felt this too. Your honesty might be the thing they needed.
+      - generic [ref=e979]:
+        - note [ref=e980]:
+          - img [ref=e982]
+          - generic [ref=e985]:
+            - paragraph [ref=e986]: Privacy note
+            - paragraph [ref=e987]: Please do not include real names, phone numbers, student IDs, or private information. This space is anonymous and supportive.
+        - generic [ref=e988]:
+          - generic [ref=e989]:
+            - generic [ref=e990]: What happened?
+            - generic [ref=e991]: required
+          - paragraph [ref=e992]: Tell us briefly. One paragraph is enough.
+          - textbox "What happened?" [active] [ref=e994]:
+            - /placeholder: "Example: I failed an exam even though I studied hard."
+          - alert [ref=e1026]: Please share at least 10 characters about what happened.
+        - generic [ref=e995]:
+          - generic [ref=e996]:
+            - generic [ref=e997]: How did it make you feel?
+            - generic [ref=e998]: required
+          - paragraph [ref=e999]: It is okay if it is messy. Honest is enough.
+          - textbox "How did it make you feel?" [ref=e1001]:
+            - /placeholder: "Example: I felt behind compared to my friends."
+          - alert [ref=e1027]: Please share at least 10 characters about how it felt.
+        - generic [ref=e1002]:
+          - generic [ref=e1004]: What helped you recover, or what do you wish someone told you?
+          - paragraph [ref=e1005]: Optional. Even one sentence can help someone else.
+          - textbox "What helped you recover, or what do you wish someone told you?" [ref=e1007]:
+            - /placeholder: "Example: I wish someone told me one failure does not define me."
+        - generic [ref=e1008]:
+          - generic [ref=e1009]:
+            - generic [ref=e1010]: Category
+            - generic [ref=e1011]:
+              - combobox "Category" [ref=e1012]:
+                - option "Study stress" [selected]
+                - option "Career / internship"
+                - option "Friendship"
+                - option "Family pressure"
+                - option "Social media comparison"
+                - option "Confidence"
+                - option "Time management"
+                - option "Other"
+              - img
+          - generic [ref=e1014] [cursor=pointer]:
+            - checkbox "Show this as a recovery story too It will appear on the Recovery Shelf to help others." [ref=e1016]
+            - generic [ref=e1017]:
+              - paragraph [ref=e1018]: Show this as a recovery story too
+              - paragraph [ref=e1019]: It will appear on the Recovery Shelf to help others.
+        - generic [ref=e1020]:
+          - paragraph [ref=e1021]: You can leave anytime. Nothing leaves your phone except your story.
+          - button "Drop my story into the machine" [ref=e1022]:
+            - generic [ref=e1023]: Drop my story into the machine
+            - img [ref=e1024]
+  - contentinfo [ref=e140]:
+    - generic [ref=e141]:
+      - generic [ref=e142]:
+        - paragraph [ref=e143]: FailMate Stories
+        - paragraph [ref=e144]: Leave one story. Take one story.
+      - generic [ref=e145]:
+        - paragraph [ref=e146]: Project · Design Thinking · 2026
+        - paragraph [ref=e147]: A student prototype for the Failure Vending Machine.
+        - button "About the project →" [ref=e148]
